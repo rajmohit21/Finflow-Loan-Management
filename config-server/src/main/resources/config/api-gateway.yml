@@ -1,0 +1,60 @@
+server:
+  port: 8090
+
+spring:
+  cloud:
+    gateway:
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOriginPatterns: "*"
+            allowedMethods: "*"
+            allowedHeaders: "*"
+            allowCredentials: true
+      routes:
+        - id: auth-service
+          uri: lb://AUTH-SERVICE
+          predicates:
+            - Path=/gateway/auth/**
+          filters:
+            - StripPrefix=1
+        - id: application-service
+          uri: lb://APPLICATION-SERVICE
+          predicates:
+            - Path=/gateway/applications/**
+          filters:
+            - StripPrefix=1
+        - id: document-service
+          uri: lb://DOCUMENT-SERVICE
+          predicates:
+            - Path=/gateway/documents/**
+          filters:
+            - StripPrefix=1
+        - id: admin-service
+          uri: lb://ADMIN-SERVICE
+          predicates:
+            - Path=/gateway/admin/**
+          filters:
+            - StripPrefix=1
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://${EUREKA_HOST:localhost}:8761/eureka/
+
+jwt:
+  secret: aVeryLongSecretKeyForJwtValidationWhichMustBeAtLeast256BitsLong
+  expiration: 86400000
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    urls:
+      - name: Auth Service
+        url: /gateway/auth/v3/api-docs
+      - name: Application Service
+        url: /gateway/applications/v3/api-docs
+      - name: Document Service
+        url: /gateway/documents/v3/api-docs
+      - name: Admin Service
+        url: /gateway/admin/v3/api-docs

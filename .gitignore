@@ -1,0 +1,46 @@
+# Target directory for Maven builds
+target/
+**/target/
+
+# IDE specific files and directories
+.settings/
+.project
+.classpath
+.factorypath
+.metadata/
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+**/out/
+.vscode/
+
+# Local documents and uploads (prevents pushing uploaded files to git)
+uploads/
+**/uploads/
+
+# Logging outputs
+*.log
+**/logs/
+logs/
+
+# Compiled Java class files
+*.class
+
+# Packaged archives
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# Docker files
+.docker/
+
+# OS specific files
+.DS_Store
+Thumbs.db
+desktop.ini

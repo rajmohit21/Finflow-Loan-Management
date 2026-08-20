@@ -1,0 +1,9 @@
+C:\Capg-CoreJAVA-Development\Capgemini-Training\All-Capg-Workspaces\FinFlow Loan Management\document-service\src\main\java\com\finflow\document\entity\Document.java
+C:\Capg-CoreJAVA-Development\Capgemini-Training\All-Capg-Workspaces\FinFlow Loan Management\document-service\src\main\java\com\finflow\document\controller\DocumentController.java
+C:\Capg-CoreJAVA-Development\Capgemini-Training\All-Capg-Workspaces\FinFlow Loan Management\document-service\src\main\java\com\finflow\document\exception\GlobalExceptionHandler.java
+C:\Capg-CoreJAVA-Development\Capgemini-Training\All-Capg-Workspaces\FinFlow Loan Management\document-service\src\main\java\com\finflow\document\DocumentServiceApplication.java
+C:\Capg-CoreJAVA-Development\Capgemini-Training\All-Capg-Workspaces\FinFlow Loan Management\document-service\src\main\java\com\finflow\document\config\RabbitMQConfig.java
+C:\Capg-CoreJAVA-Development\Capgemini-Training\All-Capg-Workspaces\FinFlow Loan Management\document-service\src\main\java\com\finflow\document\exception\ErrorDetails.java
+C:\Capg-CoreJAVA-Development\Capgemini-Training\All-Capg-Workspaces\FinFlow Loan Management\document-service\src\main\java\com\finflow\document\repository\DocumentRepository.java
+C:\Capg-CoreJAVA-Development\Capgemini-Training\All-Capg-Workspaces\FinFlow Loan Management\document-service\src\main\java\com\finflow\document\config\SwaggerConfig.java
+C:\Capg-CoreJAVA-Development\Capgemini-Training\All-Capg-Workspaces\FinFlow Loan Management\document-service\src\main\java\com\finflow\document\service\DocumentService.java

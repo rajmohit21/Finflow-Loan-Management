@@ -1,0 +1,28 @@
+server:
+  port: 8082   # (you can change if needed)
+
+spring:
+  application:
+    name: application-service
+  config:
+    import: "optional:configserver:http://${CONFIG_HOST:config-server}:8888"
+
+  datasource:
+    url: jdbc:mysql://mysql:3306/finflow_db
+    username: root
+    password: root
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka-server:8761/eureka/
+    register-with-eureka: true
+    fetch-registry: true
+
+  instance:
+    prefer-ip-address: true
