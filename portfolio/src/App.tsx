@@ -186,7 +186,7 @@ export default function App() {
       {/* ABOUT ME / PROFESSIONAL SUMMARY */}
       <section id="about" className="section-padding" style={{ background: 'var(--bg-surface)', borderTop: '1px solid var(--border-color)', borderBottom: '1px solid var(--border-color)' }}>
         <div className="section-title-badge"><i className="bi bi-person-badge-fill"></i> Professional Summary</div>
-        <h2 className="section-heading">About Mohit Raj</h2>
+        <h2 className="section-heading">About Me</h2>
         <p className="section-subheading" style={{ maxWidth: '850px', fontSize: '1.05rem', lineHeight: 1.7, color: 'var(--text-muted)' }}>
           Computer Science and Engineering graduate (2026) with hands-on experience building backend services in Java and Spring Boot, including a microservices-based application with JWT authentication, service discovery, API Gateway, and containerized deployment.
           <br /><br />
@@ -344,9 +344,6 @@ export default function App() {
                 <a href={githubRepoUrl} target="_blank" rel="noopener noreferrer" className="btn-secondary-portfolio" style={{ width: '100%', justifyContent: 'center' }}>
                   <i className="bi bi-github"></i> GitHub Repository
                 </a>
-                <a href={masterGuidePdfUrl} target="_blank" rel="noopener noreferrer" className="btn-secondary-portfolio" style={{ width: '100%', justifyContent: 'center', color: 'var(--accent-blue)' }}>
-                  <i className="bi bi-file-earmark-pdf-fill"></i> View Master Guide PDF
-                </a>
               </div>
             </div>
 
@@ -389,12 +386,6 @@ export default function App() {
                   HTML, CSS, JavaScript, React.js, Postman
                 </p>
               </div>
-
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', minWidth: '200px' }}>
-                <a href={githubRepoUrl} target="_blank" rel="noopener noreferrer" className="btn-secondary-portfolio" style={{ width: '100%', justifyContent: 'center' }}>
-                  <i className="bi bi-github"></i> GitHub Repository
-                </a>
-              </div>
             </div>
 
             <ul style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', paddingLeft: '1.25rem', color: 'var(--text-muted)', fontSize: '0.92rem' }}>
@@ -428,12 +419,6 @@ export default function App() {
                 <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', marginBottom: '0.5rem' }}>
                   MERN Stack, Socket.IO
                 </p>
-              </div>
-
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', minWidth: '200px' }}>
-                <a href={githubRepoUrl} target="_blank" rel="noopener noreferrer" className="btn-secondary-portfolio" style={{ width: '100%', justifyContent: 'center' }}>
-                  <i className="bi bi-github"></i> GitHub Repository
-                </a>
               </div>
             </div>
 
