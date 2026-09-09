@@ -1,6 +1,7 @@
 com\finflow\auth\config\CustomUserDetailsService.class
 com\finflow\auth\controller\UserController.class
 com\finflow\auth\config\JwtAuthenticationFilter.class
+com\finflow\auth\config\DatabaseSeeder.class
 com\finflow\auth\controller\AuthController.class
 com\finflow\auth\dto\SignupRequest.class
 com\finflow\auth\service\JwtService.class

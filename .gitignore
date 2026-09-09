@@ -2,11 +2,20 @@
 target/
 **/target/
 
+# Node & Frontend Build outputs
+node_modules/
+**/node_modules/
+dist/
+**/dist/
+.env
+*.env
+
 # IDE specific files and directories
 .settings/
 .project
 .classpath
 .factorypath
+*.factorypath
 .metadata/
 .idea/
 *.iml
@@ -44,3 +53,4 @@ logs/
 .DS_Store
 Thumbs.db
 desktop.ini
+

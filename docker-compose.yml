@@ -225,9 +225,21 @@ services:
       rabbitmq:
         condition: service_healthy
 
-
+# ================================================================
+# SERVICE: frontend
+# DESCRIPTION:
+# Angular production Web UI served via Nginx reverse proxy.
+# ================================================================
+  frontend:
+    build: ./frontend
+    restart: unless-stopped
+    ports:
+      - "4200:80"
+    depends_on:
+      - api-gateway
 
 volumes:
   mysql-data:
+
 
 
