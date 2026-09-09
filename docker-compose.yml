@@ -1,0 +1,245 @@
+# ================================================================
+# AUTHOR: Mohit Raj
+# FILE: docker-compose.yml
+# DESCRIPTION:
+# This file orchestrates the FinFlow Loan Management microservices 
+# infrastructure and application services. It defines all containers,
+# networking, and environmental requirements for the system.
+# ================================================================
+
+services:
+# ================================================================
+# SERVICE: rabbitmq
+# DESCRIPTION:
+# Message broker for asynchronous communication between services.
+# Includes management UI for monitoring queues and exchanges.
+# ================================================================
+  rabbitmq:
+    image: rabbitmq:3-management
+    environment:
+      - RABBITMQ_DEFAULT_USER=admin
+      - RABBITMQ_DEFAULT_PASS=admin
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "-q", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+# ================================================================
+# SERVICE: mysql
+# DESCRIPTION:
+# Central relational database management system using MySQL 8.0.
+# Features persistent volume storage for loan and user data.
+# ================================================================
+  mysql:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+
+
+# ================================================================
+# SERVICE: config-server
+# DESCRIPTION:
+# Spring Cloud Config Server providing centralized external 
+# configuration management for all microservices in the system.
+# ================================================================
+  config-server:
+    build: ./config-server
+    restart: unless-stopped
+    environment:
+      - CONFIG_HOST=config-server
+      - DB_HOST=mysql
+      - EUREKA_HOST=eureka-server
+      - RABBITMQ_HOST=rabbitmq
+      - JAVA_TOOL_OPTIONS=-Xmx256m -Xms128m
+    ports:
+      - "8888:8888"
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+      mysql:
+        condition: service_healthy
+
+# ================================================================
+# SERVICE: eureka-server
+# DESCRIPTION:
+# Service Registry based on Netflix Eureka, allowing dynamic 
+# service discovery and registration for all FinFlow modules.
+# ================================================================
+  eureka-server:
+    build: ./eureka-server
+    restart: unless-stopped
+    environment:
+      - CONFIG_HOST=config-server
+      - DB_HOST=mysql
+      - EUREKA_HOST=eureka-server
+      - RABBITMQ_HOST=rabbitmq
+      - JAVA_TOOL_OPTIONS=-Xmx256m -Xms128m
+    ports:
+      - "8761:8761"
+    depends_on:
+      config-server:
+        condition: service_started
+
+# ================================================================
+# SERVICE: api-gateway
+# DESCRIPTION:
+# Entry point for the system, handling request routing, 
+# security filtering, and aggregation of Swagger documentation.
+# ================================================================
+  api-gateway:
+    build: ./api-gateway
+    restart: unless-stopped
+    environment:
+      - CONFIG_HOST=config-server
+      - DB_HOST=mysql
+      - EUREKA_HOST=eureka-server
+      - RABBITMQ_HOST=rabbitmq
+      - JAVA_TOOL_OPTIONS=-Xmx256m -Xms128m
+    ports:
+      - "8090:8090"
+    depends_on:
+      config-server:
+        condition: service_started
+      eureka-server:
+        condition: service_started
+
+# ================================================================
+# SERVICE: auth-service
+# DESCRIPTION:
+# Microservice responsible for user management, identity validation,
+# and issuing JWT tokens for secured system access.
+# ================================================================
+  auth-service:
+    build: ./auth-service
+    restart: unless-stopped
+    environment:
+      - CONFIG_HOST=config-server
+      - DB_HOST=mysql
+      - EUREKA_HOST=eureka-server
+      - RABBITMQ_HOST=rabbitmq
+      - JAVA_TOOL_OPTIONS=-Xmx256m -Xms128m
+    ports:
+      - "8081:8081"
+    depends_on:
+      config-server:
+        condition: service_started
+      eureka-server:
+        condition: service_started
+      mysql:
+        condition: service_healthy
+
+# ================================================================
+# SERVICE: application-service
+# DESCRIPTION:
+# Core microservice handling the loan application lifecycle, 
+# from draft creation to formal submission.
+# ================================================================
+  application-service:
+    build: ./application-service
+    restart: unless-stopped
+    environment:
+      - CONFIG_HOST=config-server
+      - DB_HOST=mysql
+      - EUREKA_HOST=eureka-server
+      - RABBITMQ_HOST=rabbitmq
+      - JAVA_TOOL_OPTIONS=-Xmx256m -Xms128m
+    ports:
+      - "8082:8082"
+    depends_on:
+      config-server:
+        condition: service_started
+      eureka-server:
+        condition: service_started
+      mysql:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+
+# ================================================================
+# SERVICE: document-service
+# DESCRIPTION:
+# Microservice for managing document uploads, storage metadata, 
+# and verification status for loan application attachments.
+# ================================================================
+  document-service:
+    build: ./document-service
+    restart: unless-stopped
+    environment:
+      - CONFIG_HOST=config-server
+      - DB_HOST=mysql
+      - EUREKA_HOST=eureka-server
+      - RABBITMQ_HOST=rabbitmq
+      - JAVA_TOOL_OPTIONS=-Xmx256m -Xms128m
+    ports:
+      - "8083:8083"
+    depends_on:
+      config-server:
+        condition: service_started
+      eureka-server:
+        condition: service_started
+      mysql:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+
+# ================================================================
+# SERVICE: admin-service
+# DESCRIPTION:
+# Administrative microservice providing tools for loan review, 
+# decision making, and system reporting.
+# ================================================================
+  admin-service:
+    build: ./admin-service
+    restart: unless-stopped
+    environment:
+      - CONFIG_HOST=config-server
+      - DB_HOST=mysql
+      - EUREKA_HOST=eureka-server
+      - RABBITMQ_HOST=rabbitmq
+      - JAVA_TOOL_OPTIONS=-Xmx256m -Xms128m
+    ports:
+      - "8084:8084"
+    depends_on:
+      config-server:
+        condition: service_started
+      eureka-server:
+        condition: service_started
+      mysql:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+
+# ================================================================
+# SERVICE: frontend
+# DESCRIPTION:
+# Angular production Web UI served via Nginx reverse proxy.
+# ================================================================
+  frontend:
+    build: ./frontend
+    restart: unless-stopped
+    ports:
+      - "4200:80"
+    depends_on:
+      - api-gateway
+
+volumes:
+  mysql-data:
+
+
+

@@ -1,0 +1,9 @@
+com\finflow\document\config\SwaggerConfig.class
+com\finflow\document\service\DocumentService.class
+com\finflow\document\exception\ErrorDetails.class
+com\finflow\document\DocumentServiceApplication.class
+com\finflow\document\controller\DocumentController.class
+com\finflow\document\repository\DocumentRepository.class
+com\finflow\document\entity\Document.class
+com\finflow\document\config\RabbitMQConfig.class
+com\finflow\document\exception\GlobalExceptionHandler.class
