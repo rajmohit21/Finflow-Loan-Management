@@ -8,7 +8,7 @@ export default function App() {
   const [formError, setFormError] = useState<string | null>(null);
   const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' });
 
-  const finflowVercelUrl = 'https://finflow-loan-management-9v78-9uuq6korm-mohit-s-verse.vercel.app/login';
+  const finflowVercelUrl = 'https://finflow-loan-management-9v78.vercel.app/';
   const githubRepoUrl = 'https://github.com/rajmohit21/Finflow-Loan-Management';
   const githubProfileUrl = 'https://github.com/mohraj2180';
   const linkedinUrl = 'https://linkedin.com/in/mohit-raj-';
@@ -83,7 +83,7 @@ export default function App() {
           </ul>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-            <button 
+            <button
               onClick={toggleTheme}
               aria-label="Toggle Theme"
               style={{
@@ -103,9 +103,9 @@ export default function App() {
               <i className={`bi ${theme === 'dark' ? 'bi-sun-fill' : 'bi-moon-stars-fill'}`}></i>
             </button>
 
-            <a 
-              href={resumePdfUrl} 
-              target="_blank" 
+            <a
+              href={resumePdfUrl}
+              target="_blank"
               rel="noopener noreferrer"
               className="btn-primary-portfolio"
               style={{ padding: '0.45rem 0.9rem', fontSize: '0.85rem' }}
@@ -113,7 +113,7 @@ export default function App() {
               <i className="bi bi-file-earmark-pdf-fill"></i> Resume PDF
             </a>
 
-            <button 
+            <button
               className="mobile-menu-btn"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               style={{
@@ -138,7 +138,7 @@ export default function App() {
             <div className="section-title-badge">
               <i className="bi bi-code-slash"></i> Software Engineer & Full Stack Developer
             </div>
-            
+
             <h1 style={{ fontSize: '3.25rem', fontWeight: 800, lineHeight: 1.1, letterSpacing: '-0.04em', marginBottom: '1.25rem' }}>
               Hi, I'm <span style={{ color: 'var(--accent-blue)' }}>Mohit Raj</span> 👋
             </h1>
@@ -172,10 +172,10 @@ export default function App() {
           {/* Profile Photo Wrapper */}
           <div className="profile-avatar-container">
             <div className="profile-avatar-wrapper">
-              <img 
-                src={profilePhotoUrl} 
-                alt="Mohit Raj Profile" 
-                className="profile-avatar-img" 
+              <img
+                src={profilePhotoUrl}
+                alt="Mohit Raj Profile"
+                className="profile-avatar-img"
               />
               <div className="profile-status-badge" title="Available for Roles"></div>
             </div>
@@ -317,7 +317,7 @@ export default function App() {
         <h2 className="section-heading">Featured Engineering Projects</h2>
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: '2.5rem' }}>
-          
+
           {/* Project 1: FinFlow — Loan Management System */}
           <div className="portfolio-card" style={{ border: '2px solid var(--accent-blue)', background: 'var(--bg-card)', padding: '2.5rem' }}>
             <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'flex-start', gap: '1.5rem', marginBottom: '1.5rem' }}>
@@ -640,8 +640,8 @@ export default function App() {
             <form onSubmit={handleContactSubmit}>
               <div style={{ marginBottom: '1rem' }}>
                 <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, color: 'var(--text-muted)', marginBottom: '0.4rem' }}>Your Full Name</label>
-                <input 
-                  type="text" 
+                <input
+                  type="text"
                   required
                   placeholder="e.g. Hiring Manager / Recruiter"
                   value={formData.name}
@@ -652,8 +652,8 @@ export default function App() {
 
               <div style={{ marginBottom: '1rem' }}>
                 <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, color: 'var(--text-muted)', marginBottom: '0.4rem' }}>Your Email Address</label>
-                <input 
-                  type="email" 
+                <input
+                  type="email"
                   required
                   placeholder="name@company.com"
                   value={formData.email}
@@ -664,8 +664,8 @@ export default function App() {
 
               <div style={{ marginBottom: '1rem' }}>
                 <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, color: 'var(--text-muted)', marginBottom: '0.4rem' }}>Subject (Optional)</label>
-                <input 
-                  type="text" 
+                <input
+                  type="text"
                   placeholder="e.g. Opportunity Inquiry / Full Stack Role"
                   value={formData.subject}
                   onChange={e => setFormData({ ...formData, subject: e.target.value })}
@@ -675,7 +675,7 @@ export default function App() {
 
               <div style={{ marginBottom: '1.25rem' }}>
                 <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, color: 'var(--text-muted)', marginBottom: '0.4rem' }}>Message</label>
-                <textarea 
+                <textarea
                   required
                   rows={4}
                   placeholder="Write your enquiry message here..."
@@ -685,10 +685,10 @@ export default function App() {
                 ></textarea>
               </div>
 
-              <button 
-                type="submit" 
+              <button
+                type="submit"
                 disabled={sendingMessage}
-                className="btn-primary-portfolio" 
+                className="btn-primary-portfolio"
                 style={{ width: '100%', justifyContent: 'center', opacity: sendingMessage ? 0.7 : 1 }}
               >
                 {sendingMessage ? (
