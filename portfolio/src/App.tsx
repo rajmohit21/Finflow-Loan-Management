@@ -8,11 +8,12 @@ export default function App() {
   const [formError, setFormError] = useState<string | null>(null);
   const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' });
 
-  const finflowVercelUrl = 'https://finflow-loan-management-iuq7.vercel.app';
+  const finflowVercelUrl = 'https://finflow-loan-management-9v78-9uuq6korm-mohit-s-verse.vercel.app/login';
   const githubRepoUrl = 'https://github.com/rajmohit21/Finflow-Loan-Management';
   const githubProfileUrl = 'https://github.com/mohraj2180';
   const linkedinUrl = 'https://linkedin.com/in/mohit-raj-';
   const resumePdfUrl = '/Mohit_Raj_Resume.pdf';
+  const masterGuidePdfUrl = '/FinFlow_Master_Guide.pdf';
   const profilePhotoUrl = '/profile.jpg';
 
   useEffect(() => {
@@ -149,12 +150,6 @@ export default function App() {
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', marginBottom: '2.5rem' }}>
               <a href={resumePdfUrl} target="_blank" rel="noopener noreferrer" className="btn-primary-portfolio">
                 <i className="bi bi-file-earmark-pdf-fill"></i> Open Official Resume PDF
-              </a>
-              <a href={finflowVercelUrl} target="_blank" rel="noopener noreferrer" className="btn-secondary-portfolio">
-                <i className="bi bi-rocket-takeoff-fill" style={{ color: 'var(--accent-cyan)' }}></i> Open FinFlow Vercel Project
-              </a>
-              <a href={githubRepoUrl} target="_blank" rel="noopener noreferrer" className="btn-secondary-portfolio">
-                <i className="bi bi-github"></i> GitHub Repository
               </a>
             </div>
 
@@ -320,7 +315,6 @@ export default function App() {
       <section id="projects" className="section-padding" style={{ background: 'var(--bg-surface)', borderTop: '1px solid var(--border-color)' }}>
         <div className="section-title-badge"><i className="bi bi-star-fill"></i> Resume Projects</div>
         <h2 className="section-heading">Featured Engineering Projects</h2>
-        <p className="section-subheading">Production-grade projects engineered and documented directly from resume credentials.</p>
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: '2.5rem' }}>
           
@@ -350,7 +344,7 @@ export default function App() {
                 <a href={githubRepoUrl} target="_blank" rel="noopener noreferrer" className="btn-secondary-portfolio" style={{ width: '100%', justifyContent: 'center' }}>
                   <i className="bi bi-github"></i> GitHub Repository
                 </a>
-                <a href={resumePdfUrl} target="_blank" rel="noopener noreferrer" className="btn-secondary-portfolio" style={{ width: '100%', justifyContent: 'center', color: 'var(--accent-blue)' }}>
+                <a href={masterGuidePdfUrl} target="_blank" rel="noopener noreferrer" className="btn-secondary-portfolio" style={{ width: '100%', justifyContent: 'center', color: 'var(--accent-blue)' }}>
                   <i className="bi bi-file-earmark-pdf-fill"></i> View Master Guide PDF
                 </a>
               </div>
